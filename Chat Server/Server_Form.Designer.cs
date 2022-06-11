@@ -36,9 +36,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.client_count_label = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.send_button = new System.Windows.Forms.Button();
             this.send_textbox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.send_button = new System.Windows.Forms.Button();
             this.export_button = new System.Windows.Forms.Button();
             this.export_dialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
@@ -68,10 +68,9 @@
             // 
             // chatbox
             // 
-            this.chatbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatbox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chatbox.BackColor = System.Drawing.Color.Gainsboro;
+            this.chatbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatbox.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatbox.Location = new System.Drawing.Point(3, 81);
             this.chatbox.Name = "chatbox";
             this.chatbox.ReadOnly = true;
@@ -160,25 +159,15 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(613, 90);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // send_button
-            // 
-            this.send_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.send_button.Location = new System.Drawing.Point(3, 3);
-            this.send_button.Name = "send_button";
-            this.send_button.Size = new System.Drawing.Size(153, 36);
-            this.send_button.TabIndex = 0;
-            this.send_button.Text = "SEND";
-            this.send_button.UseVisualStyleBackColor = true;
-            this.send_button.Click += new System.EventHandler(this.send_button_Click);
-            // 
             // send_textbox
             // 
             this.send_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.send_textbox.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.send_textbox.Location = new System.Drawing.Point(3, 3);
             this.send_textbox.Multiline = true;
             this.send_textbox.Name = "send_textbox";
@@ -200,6 +189,17 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(159, 84);
             this.tableLayoutPanel5.TabIndex = 2;
+            // 
+            // send_button
+            // 
+            this.send_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.send_button.Location = new System.Drawing.Point(3, 3);
+            this.send_button.Name = "send_button";
+            this.send_button.Size = new System.Drawing.Size(153, 36);
+            this.send_button.TabIndex = 0;
+            this.send_button.Text = "SEND";
+            this.send_button.UseVisualStyleBackColor = true;
+            this.send_button.Click += new System.EventHandler(this.send_button_Click);
             // 
             // export_button
             // 

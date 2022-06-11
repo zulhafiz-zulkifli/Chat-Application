@@ -32,21 +32,21 @@
             this.chatbox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.connect_disconnect_button = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.send_button = new System.Windows.Forms.Button();
-            this.send_textbox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.ip_label = new System.Windows.Forms.Label();
             this.ip_textbox = new System.Windows.Forms.TextBox();
             this.client_name_label = new System.Windows.Forms.Label();
             this.client_name_textbot = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.send_textbox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.send_button = new System.Windows.Forms.Button();
             this.export_button = new System.Windows.Forms.Button();
             this.export_dialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,10 +70,9 @@
             // 
             // chatbox
             // 
-            this.chatbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chatbox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chatbox.BackColor = System.Drawing.Color.Gainsboro;
+            this.chatbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chatbox.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatbox.Location = new System.Drawing.Point(3, 81);
             this.chatbox.Name = "chatbox";
             this.chatbox.ReadOnly = true;
@@ -109,43 +108,6 @@
             this.connect_disconnect_button.UseVisualStyleBackColor = true;
             this.connect_disconnect_button.Click += new System.EventHandler(this.connect_disconnect_button_Click);
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.18952F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.81048F));
-            this.tableLayoutPanel3.Controls.Add(this.send_textbox, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 646);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(613, 90);
-            this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // send_button
-            // 
-            this.send_button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.send_button.Location = new System.Drawing.Point(3, 3);
-            this.send_button.Name = "send_button";
-            this.send_button.Size = new System.Drawing.Size(153, 36);
-            this.send_button.TabIndex = 0;
-            this.send_button.Text = "SEND";
-            this.send_button.UseVisualStyleBackColor = true;
-            this.send_button.Click += new System.EventHandler(this.send_button_Click);
-            // 
-            // send_textbox
-            // 
-            this.send_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.send_textbox.Location = new System.Drawing.Point(3, 3);
-            this.send_textbox.Multiline = true;
-            this.send_textbox.Name = "send_textbox";
-            this.send_textbox.Size = new System.Drawing.Size(442, 84);
-            this.send_textbox.TabIndex = 1;
-            this.send_textbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.send_textbox_KeyDown);
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
@@ -170,7 +132,7 @@
             this.ip_label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ip_label.Location = new System.Drawing.Point(3, 0);
             this.ip_label.Name = "ip_label";
-            this.ip_label.Size = new System.Drawing.Size(122, 30);
+            this.ip_label.Size = new System.Drawing.Size(122, 29);
             this.ip_label.TabIndex = 0;
             this.ip_label.Text = "  Enter server IP:";
             this.ip_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -178,7 +140,7 @@
             // ip_textbox
             // 
             this.ip_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ip_textbox.Location = new System.Drawing.Point(131, 5);
+            this.ip_textbox.Location = new System.Drawing.Point(131, 4);
             this.ip_textbox.Name = "ip_textbox";
             this.ip_textbox.Size = new System.Drawing.Size(189, 20);
             this.ip_textbox.TabIndex = 1;
@@ -190,9 +152,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.client_name_label.AutoSize = true;
-            this.client_name_label.Location = new System.Drawing.Point(3, 30);
+            this.client_name_label.Location = new System.Drawing.Point(3, 29);
             this.client_name_label.Name = "client_name_label";
-            this.client_name_label.Size = new System.Drawing.Size(122, 36);
+            this.client_name_label.Size = new System.Drawing.Size(122, 37);
             this.client_name_label.TabIndex = 2;
             this.client_name_label.Text = "Enter you name:";
             this.client_name_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -200,11 +162,38 @@
             // client_name_textbot
             // 
             this.client_name_textbot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.client_name_textbot.Location = new System.Drawing.Point(131, 38);
+            this.client_name_textbot.Location = new System.Drawing.Point(131, 37);
             this.client_name_textbot.Name = "client_name_textbot";
             this.client_name_textbot.Size = new System.Drawing.Size(189, 20);
             this.client_name_textbot.TabIndex = 3;
             this.client_name_textbot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.18952F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.81048F));
+            this.tableLayoutPanel3.Controls.Add(this.send_textbox, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 646);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(613, 90);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // send_textbox
+            // 
+            this.send_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.send_textbox.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.send_textbox.Location = new System.Drawing.Point(3, 3);
+            this.send_textbox.Multiline = true;
+            this.send_textbox.Name = "send_textbox";
+            this.send_textbox.Size = new System.Drawing.Size(442, 84);
+            this.send_textbox.TabIndex = 1;
+            this.send_textbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.send_textbox_KeyDown);
             // 
             // tableLayoutPanel5
             // 
@@ -220,6 +209,17 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(159, 84);
             this.tableLayoutPanel5.TabIndex = 2;
+            // 
+            // send_button
+            // 
+            this.send_button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.send_button.Location = new System.Drawing.Point(3, 3);
+            this.send_button.Name = "send_button";
+            this.send_button.Size = new System.Drawing.Size(153, 36);
+            this.send_button.TabIndex = 0;
+            this.send_button.Text = "SEND";
+            this.send_button.UseVisualStyleBackColor = true;
+            this.send_button.Click += new System.EventHandler(this.send_button_Click);
             // 
             // export_button
             // 
@@ -243,10 +243,10 @@
             this.Load += new System.EventHandler(this.Client_Form_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 

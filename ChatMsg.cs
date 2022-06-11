@@ -5,21 +5,27 @@ public class ChatMsg
 	public string Name { get; set; }
 	public string Body { get; set; }
 	public DateTime Timestamp { get; set; }
+	public string WS {get;}
 
-	public ChatMsg()
+public ChatMsg()
     {
+		WS = ((char)160).ToString() + ((char)160).ToString();
 	}
-
-	public string getMessageWithoutName()
-    {
-		string fullMessage = Body + " [" + Timestamp.ToString("t") + "]";
-		return fullMessage;
-    }
 
 	public string getMessage()
-	{
-		string fullMessage = Name + " : " + Body + " [" + Timestamp.ToString("t") + "]";
-		return fullMessage;
-	}
+    {
+		string msg = WS + Body + " [" + Timestamp.ToString("t") + "]" + WS;
+		return msg;
+    }
 
+	public string getName()
+    {
+		string msg = WS + Name + WS;
+		return msg;
+	}
+	public string exportMessage()
+	{
+		string msg = Name + " : " + Body + " [" + Timestamp.ToString("t") + "]" + "\r\n";
+		return msg;
+	}
 }

@@ -16,7 +16,6 @@ namespace Chat_Server
 {
     public partial class Server_Form : Form
     {
-        private const string NL = "\r\n";
         private List<TcpClient> client_list;
         private TcpListener listener;
         private int port = 13000;
@@ -221,8 +220,24 @@ namespace Chat_Server
         
         public void updateChatbox(ChatMsg m)
         {
-            string w = ((char)160).ToString() + ((char)160).ToString();
             chatbox.BeginInvoke(new Action(() => {
+                // DISPLAY SENDER NAME
+                chatbox.SelectionStart = chatbox.TextLength;
+                chatbox.SelectionLength = 0;
+                chatbox.SelectionBackColor = Color.Gainsboro;
+                if (m.Name != "Server")
+                {
+                    chatbox.SelectionColor = Color.Teal;
+                    chatbox.SelectionAlignment = HorizontalAlignment.Left;
+                    chatbox.AppendText(m.getName() + "\r\n");
+                }
+                else
+                {
+                    chatbox.SelectionColor = Color.DarkGreen;
+                    chatbox.SelectionAlignment = HorizontalAlignment.Right;
+                    chatbox.AppendText(m.getName() + "\r\n");
+                }
+                // DISPLAY CHAT MESSAGE
                 chatbox.SelectionStart = chatbox.TextLength;
                 chatbox.SelectionLength = 0;
                 chatbox.SelectionColor = Color.Black;
@@ -230,13 +245,17 @@ namespace Chat_Server
                 {
                     chatbox.SelectionBackColor = Color.PaleGreen;
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
-                    chatbox.AppendText(w + m.getMessage() + w + "\r\n" + "\r\n");
+                    chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionBackColor = Color.Gainsboro;
+                    chatbox.AppendText(m.WS + "\r\n" + "\r\n");
                 }
                 else
                 {
-                    chatbox.SelectionBackColor = Color.LightPink;
                     chatbox.SelectionAlignment = HorizontalAlignment.Left;
-                    chatbox.AppendText(w + m.getMessage() + w + "\r\n" + "\r\n");
+                    chatbox.SelectionBackColor = Color.Gainsboro;
+                    chatbox.AppendText(m.WS);
+                    chatbox.SelectionBackColor = Color.PaleTurquoise;
+                    chatbox.AppendText(m.getMessage() + "\r\n" + "\r\n");
                 }
                 chatbox.ScrollToCaret();
 
@@ -290,14 +309,7 @@ namespace Chat_Server
             string s = "";
             foreach (ChatMsg msg in chat_msgs)
             {
-                if (s == "")
-                {
-                    s = msg.getMessage();
-                }
-                else
-                {
-                    s = s + "\r\n" + msg.getMessage();
-                }
+                s = s + msg.exportMessage();
             }
             if (export_dialog.ShowDialog() == DialogResult.OK)
             {
