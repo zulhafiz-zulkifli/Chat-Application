@@ -229,6 +229,8 @@ namespace Chat_Client
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
                     chatbox.SelectionBackColor = Color.PaleGreen;
                     chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionFont = new Font("Arial", 8, FontStyle.Italic);
+                    chatbox.AppendText(m.getTime());
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS + "\r\n" + "\r\n");
 
@@ -239,7 +241,10 @@ namespace Chat_Client
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS);
                     chatbox.SelectionBackColor = Color.PaleTurquoise;
-                    chatbox.AppendText(m.getMessage() + "\r\n" + "\r\n");
+                    chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionFont = new Font("Arial", 8, FontStyle.Italic);
+                    chatbox.AppendText(m.getTime());
+                    chatbox.AppendText("\r\n" + "\r\n");
                 }
                 chatbox.ScrollToCaret();
 
