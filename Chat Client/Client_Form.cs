@@ -218,7 +218,7 @@ namespace Chat_Client
                 {
                     chatbox.SelectionColor = Color.DarkGreen;
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
-                    chatbox.AppendText(m.getName() + "\r\n");
+                    chatbox.AppendText(m.getName() + " \r\n");
                 }
                 // DISPLAY CHAT MESSAGE
                 chatbox.SelectionStart = chatbox.TextLength;
