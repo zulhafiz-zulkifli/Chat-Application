@@ -14,13 +14,7 @@ public ChatMsg()
 
 	public string getMessage()
     {
-		string msg = WS + Body + WS;
-		return msg;
-    }
-
-	public string getTime()
-    {
-		string msg = "[" + Timestamp.ToString("t") + "]" + WS;
+		string msg = WS + Body + " [" + Timestamp.ToString("t") + "]" + WS;
 		return msg;
     }
 

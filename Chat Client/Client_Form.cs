@@ -218,7 +218,7 @@ namespace Chat_Client
                 {
                     chatbox.SelectionColor = Color.DarkGreen;
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
-                    chatbox.AppendText(m.getName() + " \r\n");
+                    chatbox.AppendText(m.getName() + "\r\n");
                 }
                 // DISPLAY CHAT MESSAGE
                 chatbox.SelectionStart = chatbox.TextLength;
@@ -229,8 +229,6 @@ namespace Chat_Client
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
                     chatbox.SelectionBackColor = Color.PaleGreen;
                     chatbox.AppendText(m.getMessage());
-                    chatbox.SelectionFont = new Font("Arial", 8, FontStyle.Italic);
-                    chatbox.AppendText(m.getTime());
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS + "\r\n" + "\r\n");
 
@@ -241,10 +239,7 @@ namespace Chat_Client
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS);
                     chatbox.SelectionBackColor = Color.PaleTurquoise;
-                    chatbox.AppendText(m.getMessage());
-                    chatbox.SelectionFont = new Font("Arial", 8, FontStyle.Italic);
-                    chatbox.AppendText(m.getTime());
-                    chatbox.AppendText("\r\n" + "\r\n");
+                    chatbox.AppendText(m.getMessage() + "\r\n" + "\r\n");
                 }
                 chatbox.ScrollToCaret();
 
@@ -258,19 +253,6 @@ namespace Chat_Client
                 e.SuppressKeyPress = true;
                 send_button.PerformClick();
             }
-        }
-
-        public string GetLocalIPAddress()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
         private void export_button_Click(object sender, EventArgs e)
@@ -287,5 +269,7 @@ namespace Chat_Client
                 File.WriteAllText(export_dialog.FileName, s);
             }
         }
+
     }
 }
+ 

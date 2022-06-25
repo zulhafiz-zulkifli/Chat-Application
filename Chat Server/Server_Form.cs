@@ -246,8 +246,6 @@ namespace Chat_Server
                     chatbox.SelectionBackColor = Color.PaleGreen;
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
                     chatbox.AppendText(m.getMessage());
-                    chatbox.SelectionFont = new Font("Arial", 8, FontStyle.Italic);
-                    chatbox.AppendText(m.getTime());
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS + "\r\n" + "\r\n");
                 }
@@ -257,38 +255,12 @@ namespace Chat_Server
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS);
                     chatbox.SelectionBackColor = Color.PaleTurquoise;
-                    chatbox.AppendText(m.getMessage());
-                    chatbox.SelectionFont = new Font("Arial", 8, FontStyle.Italic);
-                    chatbox.AppendText(m.getTime());
-                    chatbox.AppendText("\r\n" + "\r\n");
+                    chatbox.AppendText(m.getMessage() + "\r\n" + "\r\n");
                 }
                 chatbox.ScrollToCaret();
 
             }));
         }
-
-        private void send_textbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                send_button.PerformClick();
-            }
-        }
-
-        public string GetLocalIPAddress()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            throw new Exception("No network adapters with an IPv4 address in the system!");
-        }
-
         public void resendToOtherClient(ChatMsg msg)
         {
             try
@@ -304,6 +276,15 @@ namespace Chat_Server
             {
                 Console.WriteLine("Error while resending message to other client");
                 Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void send_textbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                send_button.PerformClick();
             }
         }
 
