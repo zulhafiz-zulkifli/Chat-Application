@@ -76,9 +76,9 @@ namespace Chat_Client
         {
             try
             {
-                if (client.Connected && send_textbox.Text!= String.Empty)
+                if (client.Connected && send_textbox.Text != String.Empty)
                 {
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(client_name+"~"+send_textbox.Text);
+                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(client_name + "~" + send_textbox.Text);
                     NetworkStream stream = client.GetStream();
                     stream.Write(data, 0, data.Length);
                     ChatMsg msg = new ChatMsg()
@@ -104,13 +104,13 @@ namespace Chat_Client
             IPAddress address = IPAddress.Parse(LOCALHOST);
             try
             {
-                if(!IPAddress.TryParse(ip, out address))
+                if (!IPAddress.TryParse(ip, out address))
                 {
                     address = IPAddress.Parse(LOCALHOST);
                     ip_textbox.Text = LOCALHOST;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error parsing server IP address");
                 Console.WriteLine(ex.ToString());
@@ -148,7 +148,7 @@ namespace Chat_Client
                                 Body = datas[1],
                                 Timestamp = DateTime.Now
                             };
-                            if(msg.Name != client_name)
+                            if (msg.Name != client_name)
                             {
                                 chat_msgs.Add(msg);
                                 updateChatbox(msg);
@@ -166,7 +166,7 @@ namespace Chat_Client
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error communicating with server");
                 Console.WriteLine(ex.ToString());
@@ -194,7 +194,7 @@ namespace Chat_Client
                 }));
                 Console.WriteLine("Disconnected from server");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error disconnecting from server");
                 Console.WriteLine(ex.ToString());
@@ -218,7 +218,7 @@ namespace Chat_Client
                 {
                     chatbox.SelectionColor = Color.DarkGreen;
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
-                    chatbox.AppendText(m.getName() + "\r\n");
+                    chatbox.AppendText(m.getName() + " \r\n");
                 }
                 // DISPLAY CHAT MESSAGE
                 chatbox.SelectionStart = chatbox.TextLength;
@@ -229,6 +229,8 @@ namespace Chat_Client
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
                     chatbox.SelectionBackColor = Color.PaleGreen;
                     chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionFont = new Font("Segoe UI", 8, FontStyle.Regular);
+                    chatbox.AppendText(m.getTime());
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS + "\r\n" + "\r\n");
 
@@ -239,7 +241,10 @@ namespace Chat_Client
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS);
                     chatbox.SelectionBackColor = Color.PaleTurquoise;
-                    chatbox.AppendText(m.getMessage() + "\r\n" + "\r\n");
+                    chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionFont = new Font("Segoe UI", 8, FontStyle.Regular);
+                    chatbox.AppendText(m.getTime());
+                    chatbox.AppendText("\r\n" + "\r\n");
                 }
                 chatbox.ScrollToCaret();
 
@@ -253,6 +258,19 @@ namespace Chat_Client
                 e.SuppressKeyPress = true;
                 send_button.PerformClick();
             }
+        }
+
+        public string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
         private void export_button_Click(object sender, EventArgs e)
@@ -269,7 +287,5 @@ namespace Chat_Client
                 File.WriteAllText(export_dialog.FileName, s);
             }
         }
-
     }
 }
- 

@@ -31,7 +31,7 @@ namespace Chat_Server
             start_stop_button.Text = "START SERVER";
             send_button.Enabled = false;
             chat_msgs = new List<ChatMsg>();
-            
+
         }
 
         private void Server_Form_Load(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Chat_Server
         private void start_stop_button_Click(object sender, EventArgs e)
         {
             //CLICKING START SERVER BUTTON
-            if(start_stop_button.Text == "START SERVER")
+            if (start_stop_button.Text == "START SERVER")
             {
                 try
                 {
@@ -73,11 +73,11 @@ namespace Chat_Server
 
                 try
                 {
-                    foreach(TcpClient client in client_list)
+                    foreach (TcpClient client in client_list)
                     {
                         client.Close();
                     }
-                    
+
                     client_list.Clear();
                     listener.Stop();
                     client_count = 0;
@@ -86,7 +86,7 @@ namespace Chat_Server
                     send_button.Enabled = false;
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Error while stopping server");
                     Console.WriteLine(ex.ToString());
@@ -101,15 +101,16 @@ namespace Chat_Server
             try
             {
 
-                foreach(TcpClient client in client_list)
+                foreach (TcpClient client in client_list)
                 {
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes("Server"+"~"+send_textbox.Text);
+                    Byte[] data = System.Text.Encoding.ASCII.GetBytes("Server" + "~" + send_textbox.Text);
                     NetworkStream stream = client.GetStream();
                     stream.Write(data, 0, data.Length);
                 }
-                if(send_textbox.Text != String.Empty)
+                if (send_textbox.Text != String.Empty)
                 {
-                    ChatMsg msg = new ChatMsg() {
+                    ChatMsg msg = new ChatMsg()
+                    {
                         Name = "Server",
                         Body = send_textbox.Text,
                         Timestamp = DateTime.Now
@@ -119,7 +120,7 @@ namespace Chat_Server
                 }
                 send_textbox.Text = String.Empty;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error while sending message to client");
                 Console.WriteLine(ex.ToString());
@@ -145,7 +146,7 @@ namespace Chat_Server
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error while listening to client");
                 Console.WriteLine(ex.ToString());
@@ -217,7 +218,7 @@ namespace Chat_Server
             Console.WriteLine("Client disconnected.");
 
         }
-        
+
         public void updateChatbox(ChatMsg m)
         {
             chatbox.BeginInvoke(new Action(() => {
@@ -246,6 +247,8 @@ namespace Chat_Server
                     chatbox.SelectionBackColor = Color.PaleGreen;
                     chatbox.SelectionAlignment = HorizontalAlignment.Right;
                     chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionFont = new Font("Segoe UI", 8, FontStyle.Regular);
+                    chatbox.AppendText(m.getTime());
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS + "\r\n" + "\r\n");
                 }
@@ -255,12 +258,38 @@ namespace Chat_Server
                     chatbox.SelectionBackColor = Color.Gainsboro;
                     chatbox.AppendText(m.WS);
                     chatbox.SelectionBackColor = Color.PaleTurquoise;
-                    chatbox.AppendText(m.getMessage() + "\r\n" + "\r\n");
+                    chatbox.AppendText(m.getMessage());
+                    chatbox.SelectionFont = new Font("Segoe UI", 8, FontStyle.Regular);
+                    chatbox.AppendText(m.getTime());
+                    chatbox.AppendText("\r\n" + "\r\n");
                 }
                 chatbox.ScrollToCaret();
 
             }));
         }
+
+        private void send_textbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                send_button.PerformClick();
+            }
+        }
+
+        public string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
         public void resendToOtherClient(ChatMsg msg)
         {
             try
@@ -276,15 +305,6 @@ namespace Chat_Server
             {
                 Console.WriteLine("Error while resending message to other client");
                 Console.WriteLine(ex.ToString());
-            }
-        }
-
-        private void send_textbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                send_button.PerformClick();
             }
         }
 
